@@ -358,16 +358,27 @@ iframe {
     
     }
  
+    imagen-port img {
+        width: 100%;
+        height: auto;
+        transform: scale(1); /* La imagen se muestra en su tamaño normal */
+        transition: transform 0.5s ease, cursor 0.5s ease;
+        cursor: zoom-in; /* El cursor indicará que puedes hacer clic para ampliar */
+    }
 
+    .imagen-port {
+        overflow: hidden;
+        position: relative;
+    }
 </style>
   
 <script>
-     document.querySelectorAll('.imagen-port').forEach((item) => {
+    document.querySelectorAll('.imagen-port').forEach((item) => {
         item.addEventListener('click', (e) => {
             const img = item.querySelector('img');
             if (img.style.transform === 'scale(2)') {
-                img.style.transform = 'scale(1)';
-                img.style.cursor = 'zoom-in';
+                img.style.transform = 'scale(1)'; /* Volver al tamaño original */
+                img.style.cursor = 'zoom-in'; /* Cambiar cursor para indicar que puedes ampliar */
             } else {
                 const width = img.offsetWidth;
                 const height = img.offsetHeight;
@@ -377,8 +388,8 @@ iframe {
                 const moveX = (mouseX / width * 100) - 50;
                 const moveY = (mouseY / height * 100) - 50;
 
-                img.style.transform = `scale(2) translate(${moveX}%, ${moveY}%)`;
-                img.style.cursor = 'zoom-out';
+                img.style.transform = `scale(2) translate(${moveX}%, ${moveY}%)`; /* Aplicar zoom y centrar en el clic */
+                img.style.cursor = 'zoom-out'; /* Cambiar cursor para indicar que puedes reducir */
             }
         });
     });
