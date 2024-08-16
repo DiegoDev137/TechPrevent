@@ -373,23 +373,24 @@ iframe {
 </style>
   
 <script>
-    document.querySelectorAll('.imagen-port').forEach((item) => {
-        item.addEventListener('mousemove', (e) => {
+     document.querySelectorAll('.imagen-port').forEach((item) => {
+        item.addEventListener('click', (e) => {
             const img = item.querySelector('img');
-            const width = img.offsetWidth;
-            const height = img.offsetHeight;
-            const mouseX = e.offsetX;
-            const mouseY = e.offsetY;
+            if (img.style.transform === 'scale(2)') {
+                img.style.transform = 'scale(1)';
+                img.style.cursor = 'zoom-in';
+            } else {
+                const width = img.offsetWidth;
+                const height = img.offsetHeight;
+                const mouseX = e.offsetX;
+                const mouseY = e.offsetY;
 
-            const moveX = (mouseX / width * 100) - 50;
-            const moveY = (mouseY / height * 100) - 50;
+                const moveX = (mouseX / width * 100) - 50;
+                const moveY = (mouseY / height * 100) - 50;
 
-            img.style.transform = `scale(2) translate(${moveX}%, ${moveY}%)`;
-        });
-
-        item.addEventListener('mouseleave', () => {
-            const img = item.querySelector('img');
-            img.style.transform = `scale(1) translate(0, 0)`;
+                img.style.transform = `scale(2) translate(${moveX}%, ${moveY}%)`;
+                img.style.cursor = 'zoom-out';
+            }
         });
     });
 </script>
