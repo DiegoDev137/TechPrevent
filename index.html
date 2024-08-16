@@ -358,7 +358,7 @@ iframe {
     
     }
  
-    imagen-port img {
+ .imagen-port img {
         width: 100%;
         height: auto;
         transform: scale(1); /* La imagen se muestra en su tamaño normal */
@@ -373,8 +373,10 @@ iframe {
 </style>
   
 <script>
-    document.querySelectorAll('.imagen-port').forEach((item) => {
+   document.querySelectorAll('.imagen-port').forEach((item) => {
         item.addEventListener('click', (e) => {
+            e.preventDefault(); // Previene el comportamiento por defecto de la página
+
             const img = item.querySelector('img');
             if (img.style.transform === 'scale(2)') {
                 img.style.transform = 'scale(1)'; /* Volver al tamaño original */
