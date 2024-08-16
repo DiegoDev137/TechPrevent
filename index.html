@@ -355,8 +355,43 @@ iframe {
     .backvideo1 {
         padding: 70px 0px;
         text-align: center;
+    
     }
+
+    document.querySelectorAll('.imagen-port').forEach((item) => {
+    item.addEventListener('mousemove', (e) => {
+        const img = item.querySelector('img');
+        const width = img.offsetWidth;
+        const height = img.offsetHeight;
+        const mouseX = e.offsetX;
+        const mouseY = e.offsetY;
+        
+        const moveX = (mouseX / width * 100) - 50;
+        const moveY = (mouseY / height * 100) - 50;
+        
+        img.style.transform = `scale(2) translate(${moveX}%, ${moveY}%)`;
+    });
+    
+    item.addEventListener('mouseleave', () => {
+        const img = item.querySelector('img');
+        img.style.transform = `scale(1) translate(0, 0)`;
+    });
+});
+ 
+.imagen-port img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+    pointer-events: none; /* Evita que el cursor interactúe directamente con la imagen */
+}
+
+.imagen-port {
+    overflow: hidden;
+    position: relative;
+}
+
 </style>
+  
 
 <head>
     <!-- css header y footer-->
